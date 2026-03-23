@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probar API</title>
+</head>
+<body>
+    <h2>Prueba de API con Textarea</h2>
+
+    <!-- Textarea para mostrar la respuesta de la API -->
+    <textarea id="resultado" rows="10" cols="50" placeholder="Aquí aparecerán los datos de la API..."></textarea>
+
+    <!-- Botón para hacer la solicitud -->
+    <button onclick="consultarAPI()">Consultar API</button>
+
+    <script>
+        function consultarAPI() {
+            // Aquí puedes colocar la URL de la API que quieras probar
+            const url = 'http://localhost:3001/api/curso/listar';  // Ejemplo con una API de prueba
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Convertir los datos a un formato legible para mostrar
+                    document.getElementById('resultado').value = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    // En caso de error, mostrar el mensaje en el textarea
+                    document.getElementById('resultado').value = 'Error al obtener los datos: ' + error;
+                });
+        }
+    </script>
+</body>
+</html>
